@@ -50,7 +50,7 @@ function ShopInner() {
           <button
             key={t}
             onClick={() => setCategory(t)}
-            className="label rounded-full px-5 py-2 transition-all duration-500 ease-apple"
+            className="label px-5 py-2 transition-all duration-500 ease-apple"
             style={{
               background: category === t ? "var(--botanical)" : "transparent",
               color: category === t ? "var(--cream)" : "var(--ink)",

@@ -45,7 +45,7 @@ export const products: Product[] = [
     price: 595,
     rating: 5,
     reviews: 64,
-    images: [img("photo-1586201375761-83865001e31c"), img("photo-1536304929831-ee1ca9d44906"), img("photo-1557872943-16a5ac26437e")],
+    images: ["/products/kalu-heenati-rice.png", img("photo-1536304929831-ee1ca9d44906"), img("photo-1557872943-16a5ac26437e")],
     description:
       "A deep red heritage rice treasured across Sri Lanka for generations. Nutty, hearty, and rich in fibre and antioxidants — the wholesome heart of a traditional table.",
     origin:

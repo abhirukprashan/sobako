@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import Marquee from "@/components/Marquee";
 import Reveal from "@/components/Reveal";
 import ParallaxImage from "@/components/ParallaxImage";
+import HeroShowcase from "@/components/HeroShowcase";
 
 const u = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=80`;
@@ -43,11 +44,7 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        <ParallaxImage
-          src={u("photo-1586201375761-83865001e31c")}
-          alt="Bowl of traditional Sri Lankan red rice"
-          className="min-h-[360px] lg:min-h-[640px]"
-        />
+        <HeroShowcase products={featured} />
       </section>
 
       {/* ---------- MARQUEE ---------- */}

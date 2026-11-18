@@ -41,7 +41,7 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <aside
-        className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-[440px] flex-col bg-cream transition-transform duration-500 ease-apple ${
+        className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-[440px] flex-col bg-white transition-transform duration-500 ease-apple ${
           cartOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ borderLeft: "1px solid var(--hair)" }}
@@ -173,7 +173,7 @@ export default function CartDrawer() {
               </div>
               <button
                 onClick={() => setCheckedOut(true)}
-                className="w-full rounded-full py-4 text-[11px] uppercase tracking-widest transition-opacity duration-300 hover:opacity-90"
+                className="w-full py-4 text-[11px] uppercase tracking-widest transition-opacity duration-300 hover:opacity-90"
                 style={{ background: "var(--botanical)", color: "var(--cream)" }}
               >
                 Checkout · {formatLKR(subtotal)}

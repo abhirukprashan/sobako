@@ -183,7 +183,7 @@ function NewsletterBand() {
         </p>
         <Link
           href="/contact"
-          className="mt-8 inline-flex rounded-full border border-cream/60 px-7 py-3 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:bg-cream hover:text-ink"
+          className="mt-8 inline-flex border border-cream/60 px-7 py-3 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:bg-cream hover:text-ink"
         >
           Get In Touch
         </Link>

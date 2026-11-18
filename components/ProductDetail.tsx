@@ -56,7 +56,7 @@ export default function ProductDetail({
       <section className="mx-auto grid max-w-[1200px] grid-cols-1 gap-10 px-6 py-10 md:px-10 md:py-16 lg:grid-cols-2 lg:items-start lg:gap-16">
         {/* Gallery */}
         <div className="lg:self-start">
-          <div className="relative h-[420px] overflow-hidden bg-[#eee9df] sm:h-[560px] lg:h-[640px]">
+          <div className="relative h-[420px] overflow-hidden bg-[#eee9df] shadow-[-10px_10px_28px_-14px_rgba(20,20,20,0.45)] sm:h-[560px] lg:h-[640px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={product.images[0]}
