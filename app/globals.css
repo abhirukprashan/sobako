@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #fefbf4;
+  --ink: #141414;
+  --botanical: #166938;
+  --hair: rgba(20, 20, 20, 0.2);
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* make Tailwind border utilities (border-b, lg:border-r, ...) use the hairline color */
+  border-color: var(--hair);
+}
+
+html,
+body {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+/* Swiss hairline helpers */
+.hair-b {
+  border-bottom: 1px solid var(--hair);
+}
+.hair-t {
+  border-top: 1px solid var(--hair);
+}
+.hair-r {
+  border-right: 1px solid var(--hair);
+}
+.hair-l {
+  border-left: 1px solid var(--hair);
+}
+.hair-all {
+  border: 1px solid var(--hair);
+}
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s var(--ease-apple), transform 0.9s var(--ease-apple);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 32s linear infinite;
+}
+
+/* Pill outline button */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  transition: background 0.5s var(--ease-apple), color 0.5s var(--ease-apple);
+}
+.pill:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* Image parallax scale */
+.parallax-img {
+  transition: transform 0.9s var(--ease-apple);
+  will-change: transform;
+}
+
+::selection {
+  background: var(--botanical);
+  color: var(--cream);
+}
+
+/* hide scrollbar for drawer backdrop smoothness */
+body.no-scroll {
+  overflow: hidden;
+}
