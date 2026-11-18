@@ -15,6 +15,8 @@ const config: Config = {
       fontFamily: {
         serif: ["var(--font-serif)", "serif"],
         sans: ["var(--font-sans)", "sans-serif"],
+        mona: ["var(--font-mona)", "sans-serif"],
+        subheading: ["var(--font-mona)", "sans-serif"],
       },
       letterSpacing: {
         widest: "0.18em",

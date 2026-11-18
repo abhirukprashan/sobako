@@ -70,7 +70,7 @@ export const products: Product[] = [
     price: 650,
     rating: 5,
     reviews: 48,
-    images: [img("photo-1536304929831-ee1ca9d44906"), img("photo-1586201375761-83865001e31c")],
+    images: ["/products/suwandel-rice-4kg-sri-lanka.png"],
     description:
       "The fragrant 'sweet-smelling' white heritage rice, soft and delicately aromatic. A festive favourite once reserved for special occasions.",
     origin: "A revived ancient variety, cultivated naturally without chemical inputs.",
@@ -92,7 +92,7 @@ export const products: Product[] = [
     price: 525,
     rating: 4,
     reviews: 31,
-    images: [img("photo-1557872943-16a5ac26437e"), img("photo-1586201375761-83865001e31c")],
+    images: ["/products/batapolal-rice-sri-lanka.png",img("photo-1586201375761-83865001e31c")],
     description:
       "A wholesome everyday traditional rice with a satisfying bite and gentle earthiness — nourishing comfort for daily meals.",
     origin: "Traditionally cultivated and minimally processed to retain nutrients.",
@@ -114,7 +114,7 @@ export const products: Product[] = [
     price: 495,
     rating: 5,
     reviews: 52,
-    images: [img("photo-1484723091739-30a097e8f929"), img("photo-1484723091739-30a097e8f929")],
+    images: ["/products/heenati-rice-porridge-sri-lanka.png",img("photo-1484723091739-30a097e8f929")],
     description:
       "A nourishing instant kanda made from red Heenati rice — Sri Lanka's beloved wholesome breakfast, warm and comforting in minutes.",
     origin: "Milled from traditional Heenati red rice and gently blended.",
@@ -137,7 +137,7 @@ export const products: Product[] = [
     price: 495,
     rating: 5,
     reviews: 40,
-    images: [img("photo-1484723091739-30a097e8f929"), img("photo-1484723091739-30a097e8f929")],
+    images: ["/products/suwandel-rice-porridge-sri-lanka.png"],
     description:
       "A mild, aromatic porridge made from fragrant Suwandel rice — a gentle, soothing start to the morning.",
     origin: "Blended from naturally grown Suwandel heritage rice.",
@@ -159,7 +159,7 @@ export const products: Product[] = [
     price: 495,
     rating: 4,
     reviews: 27,
-    images: [img("photo-1536304929831-ee1ca9d44906"), img("photo-1484723091739-30a097e8f929")],
+    images: ["/products/horse-gram-porridge-sri-lanka.png",img("photo-1484723091739-30a097e8f929")],
     description:
       "A traditional superfood kanda rich in protein and iron — earthy, hearty, and deeply nourishing.",
     origin: "Made from sun-dried horse gram, a time-honoured Sri Lankan pulse.",
@@ -181,7 +181,7 @@ export const products: Product[] = [
     price: 1495,
     rating: 5,
     reviews: 19,
-    images: [img("photo-1512621776951-a57141f2eefd"), img("photo-1512621776951-a57141f2eefd")],
+    images: ["/products/curry-leaves-yaki-naran-rice-porridge-sri-lanka.png",img("photo-1512621776951-a57141f2eefd")],
     description:
       "A traditional herbal kola kanda blending curry leaves and yaki naran — a wellness ritual passed down through generations.",
     origin: "Hand-blended from fresh green herbs and red rice, sun-dried in small lots.",
@@ -203,7 +203,7 @@ export const products: Product[] = [
     price: 1495,
     rating: 5,
     reviews: 16,
-    images: [img("photo-1512621776951-a57141f2eefd"), img("photo-1512621776951-a57141f2eefd")],
+    images: ["/products/heenbovitiya-rice-porridge-sri-lanka.png",img("photo-1512621776951-a57141f2eefd")],
     description:
       "A traditional herbal wellness blend built around heenbovitiya, prized in Ayurvedic practice for its soothing, restorative qualities.",
     origin: "Blended from wild-harvested herbs and traditional red rice.",
@@ -225,7 +225,7 @@ export const products: Product[] = [
     price: 595,
     rating: 5,
     reviews: 33,
-    images: [img("photo-1551462147-37885acc36f1"), img("photo-1612874742237-6526221588e3")],
+    images: [ "/products/blue-butterfly-pea-pasta-sri-lanka.png",img("photo-1612874742237-6526221588e3")],
     description:
       "Striking naturally blue pasta coloured with butterfly pea flower — a playful, nutritious twist on an everyday favourite.",
     origin: "Made with semolina and real butterfly pea flower, free from artificial colour.",
@@ -247,7 +247,7 @@ export const products: Product[] = [
     price: 595,
     rating: 4,
     reviews: 22,
-    images: [img("photo-1612874742237-6526221588e3"), img("photo-1551462147-37885acc36f1")],
+    images: ["/products/corn-pasta-sri-lanka.jpg",img("photo-1551462147-37885acc36f1")],
     description:
       "A light, naturally gluten-friendly pasta made from golden corn — wholesome, mellow, and easy to love.",
     origin: "Milled from quality corn and extruded into a tender everyday pasta.",
@@ -269,7 +269,7 @@ export const products: Product[] = [
     price: 640,
     rating: 5,
     reviews: 24,
-    images: [img("photo-1509440159596-0249088772ff"), img("photo-1574323347407-f5e1ad6d020b")],
+    images: ["/products/corn-pittu-flour-premium-sri-lankan-corn-flour-400g.png",img("photo-1574323347407-f5e1ad6d020b")],
     description:
       "Premium Sri Lankan corn flour, ready for soft, fragrant pittu and other traditional steamed delights.",
     origin: "Finely milled from quality corn for a smooth, consistent texture.",
@@ -291,7 +291,7 @@ export const products: Product[] = [
     price: 580,
     rating: 4,
     reviews: 18,
-    images: [img("photo-1574323347407-f5e1ad6d020b"), img("photo-1509440159596-0249088772ff")],
+    images: ["/products/lanka-basmati-rice-4kg-sri-lanka.png",img("photo-1509440159596-0249088772ff")],
     description:
       "Nutritious red rice flour for hoppers, string hoppers, and wholesome home baking — stone-milled to keep the bran.",
     origin: "Milled from traditional red rice in small, careful batches.",

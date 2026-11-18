@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { StoreProvider } from "@/context/StoreContext";
 import Header from "@/components/Header";
@@ -18,6 +19,12 @@ const sans = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+const monaSans = localFont({
+  src: "../node_modules/mona-sans/Mona-Sans.woff2",
+  variable: "--font-mona",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Sobako — Natural Goodness for Every Sri Lankan Table",
   description:
@@ -30,7 +37,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html
+      lang="en"
+      className={`${serif.variable} ${sans.variable} ${monaSans.variable}`}
+    >
       <body className="font-sans antialiased">
         <StoreProvider>
           <Header />
