@@ -6,7 +6,7 @@ import Marquee from "@/components/Marquee";
 import Reveal from "@/components/Reveal";
 import SplitText from "@/components/SplitText";
 import ParallaxImage from "@/components/ParallaxImage";
-import HeroShowcase from "@/components/HeroShowcase";
+import HeroFan from "@/components/HeroFan";
 
 const u = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=80`;
@@ -18,33 +18,7 @@ export default function HomePage() {
   return (
     <div>
       {/* ---------- HERO ---------- */}
-      <section className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative flex flex-col justify-between border-b lg:border-r lg:border-b-0 px-6 py-10 md:px-10 md:py-14">
-          <Reveal variant="fade" delay={80}>
-            <p className="max-w-sm text-sm leading-relaxed text-ink/70">
-              Rediscover the heritage grains of Sri Lanka — traditional rice,
-              herbal porridge, and stone-milled flour, grown naturally and
-              prepared with care for the way we&apos;ve always eaten.
-            </p>
-            <Link
-              href="/shop"
-              className="pill mt-8 text-[11px] uppercase tracking-widest"
-            >
-              Shop Sobako
-            </Link>
-          </Reveal>
-
-          <SplitText
-            as="h1"
-            lines={["Natural goodness", "for every", "Sri Lankan table"]}
-            delay={220}
-            stagger={70}
-            className="mt-20 font-sans text-[2.2rem] font-semibold uppercase leading-[1.05] tracking-tight md:text-[3.2rem]"
-          />
-        </div>
-
-        <HeroShowcase products={featured} />
-      </section>
+      <HeroFan />
 
       {/* ---------- MARQUEE ---------- */}
       <Marquee />

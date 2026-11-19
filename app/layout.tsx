@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import NaturalCursor from "@/components/NaturalCursor";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const serif = Playfair_Display({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <StoreProvider>
+          <LoadingScreen />
           <Header />
           <main>{children}</main>
           <Footer />
