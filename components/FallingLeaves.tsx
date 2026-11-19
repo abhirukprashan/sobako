@@ -19,7 +19,7 @@ const rand = (i: number, seed: number) => {
   return x - Math.floor(x);
 };
 
-const LEAVES: LeafConfig[] = Array.from({ length: 28 }, (_, i) => ({
+const LEAVES: LeafConfig[] = Array.from({ length: 12 }, (_, i) => ({
   left: `${(rand(i, 1) * 100).toFixed(2)}%`,
   size: `${10 + Math.round(rand(i, 2) * 13)}px`,
   dur: `${(12 + rand(i, 3) * 11).toFixed(1)}s`,

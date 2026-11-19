@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter_Tight, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { StoreProvider } from "@/context/StoreContext";
 import Header from "@/components/Header";
@@ -9,21 +8,19 @@ import CartDrawer from "@/components/CartDrawer";
 import LoadingScreen from "@/components/LoadingScreen";
 import FallingLeaves from "@/components/FallingLeaves";
 
-const serif = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const sans = Plus_Jakarta_Sans({
+// Two fonts site-wide, Swiss/industrial:
+//  - Inter Tight: neo-grotesk for headings and body
+//  - IBM Plex Mono: technical mono for labels, nav, buttons and prices
+const sans = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const monaSans = localFont({
-  src: "../node_modules/mona-sans/Mona-Sans.woff2",
-  variable: "--font-mona",
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -41,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${serif.variable} ${sans.variable} ${monaSans.variable}`}
+      className={`${sans.variable} ${mono.variable}`}
     >
       <body className="font-sans antialiased">
         <StoreProvider>

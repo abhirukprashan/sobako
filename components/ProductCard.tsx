@@ -44,6 +44,7 @@ export default function ProductCard({ product }: { product: Product }) {
           href={`/products/${product.slug}`}
           className="relative block overflow-hidden"
         >
+          <div data-m-media>
           <div
             ref={mediaRef}
             onPointerMove={trackPointer}
@@ -59,6 +60,7 @@ export default function ProductCard({ product }: { product: Product }) {
             />
             <div className="card-spotlight" aria-hidden="true" />
             <div className="card-sheen" aria-hidden="true" />
+          </div>
           </div>
         </Link>
 

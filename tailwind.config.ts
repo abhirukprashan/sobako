@@ -13,10 +13,12 @@ const config: Config = {
         botanical: "#166938",
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "serif"],
-        sans: ["var(--font-sans)", "sans-serif"],
-        mona: ["var(--font-mona)", "sans-serif"],
-        subheading: ["var(--font-mona)", "sans-serif"],
+        // Two fonts only: Inter Tight (grotesk) + IBM Plex Mono (labels).
+        sans: ["var(--font-sans)", "Helvetica Neue", "Arial", "sans-serif"],
+        serif: ["var(--font-sans)", "Helvetica Neue", "Arial", "sans-serif"],
+        mona: ["var(--font-sans)", "Helvetica Neue", "Arial", "sans-serif"],
+        subheading: ["var(--font-sans)", "Helvetica Neue", "Arial", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       letterSpacing: {
         widest: "0.18em",

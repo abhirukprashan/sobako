@@ -65,11 +65,12 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-40 hair-b transition-[background,backdrop-filter] duration-500 ease-apple"
+      className="sticky top-0 z-40 hair-b transition-[background,box-shadow] duration-500 ease-apple"
       style={{
-        background: scrolled ? "rgba(254,251,244,0.85)" : "rgba(254,251,244,1)",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+        // A live backdrop blur re-renders on every scroll frame; a near-opaque
+        // fill keeps the same look at a fraction of the cost.
+        background: scrolled ? "rgba(254,251,244,0.97)" : "rgba(254,251,244,1)",
+        boxShadow: scrolled ? "0 8px 24px -18px rgba(20,20,20,0.25)" : "none",
       }}
     >
       <nav className="mx-auto grid max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-4 md:px-8 md:py-5">
