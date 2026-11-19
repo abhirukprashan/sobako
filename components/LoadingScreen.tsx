@@ -61,29 +61,12 @@ export default function LoadingScreen() {
       <div className="loading-panel loading-panel-bottom" aria-hidden="true" />
 
       <div className="loading-content">
-        <div className="loading-mark">
-          <svg
-            className="loading-ring"
-            viewBox="0 0 168 168"
-            aria-hidden="true"
-          >
-            <circle className="loading-ring-track" cx="84" cy="84" r="80" />
-            <circle className="loading-ring-arc" cx="84" cy="84" r="80" />
-          </svg>
-
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/cropped-website-logo-sobako.png"
-            alt="Sobako"
-            className="loading-logo"
-          />
-        </div>
-
-        <span className="loading-label">100% Natural</span>
-
-        <div className="loading-bar" aria-hidden="true">
-          <span />
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/cropped-website-logo-sobako.png"
+          alt="Sobako"
+          className="loading-logo"
+        />
       </div>
     </div>
   );

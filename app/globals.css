@@ -506,8 +506,8 @@ body.no-scroll {
 .hero-fan {
   position: relative;
   overflow: hidden;
-  background: #ffffff;
-  padding: clamp(26px, 3.8vw, 54px) 24px 0;
+  background: var(--cream);
+  padding: clamp(20px, 3vw, 42px) 24px 0;
 }
 
 .hero-fan-copy {
@@ -520,11 +520,11 @@ body.no-scroll {
 
 .hero-fan-title {
   margin-top: 0;
-  font-family: var(--font-serif), serif;
-  font-weight: 500;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
   font-size: clamp(2.2rem, 5.9vw, 4.6rem);
   line-height: 1.08;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   color: var(--botanical);
 }
 
@@ -554,11 +554,11 @@ body.no-scroll {
 /* Circular carousel: packs sit on a ring and the ring turns on its axis. */
 .hero-fan-stage {
   position: relative;
-  height: clamp(300px, 40vw, 560px);
+  height: clamp(240px, 26vw, 390px);
   margin-top: clamp(-4px, 0.4vw, 6px);
   --w: clamp(108px, 16vw, 240px);
   --r: clamp(420px, 52vw, 760px);
-  --c: clamp(170px, 26vw, 380px);
+  --c: clamp(240px, 40vw, 580px);
 }
 .hero-fan-stage::before {
   content: "";
@@ -648,10 +648,10 @@ body.no-scroll {
   }
   .hero-fan-stage {
     margin-top: 0;
-    height: clamp(240px, 55vw, 400px);
+    height: clamp(150px, 33vw, 320px);
     --w: clamp(92px, 24vw, 160px);
     --r: clamp(250px, 66vw, 500px);
-    --c: clamp(120px, 34vw, 220px);
+    --c: clamp(170px, 52vw, 380px);
   }
 }
 
@@ -712,48 +712,13 @@ body.no-scroll {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 18px;
   transition:
     opacity 0.4s var(--ease-apple),
     transform 0.6s var(--ease-apple);
 }
 
-.loading-mark {
-  position: relative;
-  display: grid;
-  width: 168px;
-  height: 168px;
-  place-items: center;
-}
-
-.loading-ring {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  animation: loading-spin 1.5s linear infinite;
-}
-.loading-ring-track,
-.loading-ring-arc {
-  fill: none;
-  stroke-width: 1.25;
-}
-.loading-ring-track {
-  stroke: rgba(20, 20, 20, 0.1);
-}
-.loading-ring-arc {
-  stroke: var(--botanical);
-  stroke-linecap: round;
-  stroke-dasharray: 92 411;
-}
-@keyframes loading-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .loading-logo {
-  width: 122px;
+  width: 168px;
   height: auto;
   object-fit: contain;
   opacity: 0;
@@ -781,47 +746,6 @@ body.no-scroll {
   }
 }
 
-.loading-label {
-  font-family: var(--font-mona), var(--font-sans), sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--botanical);
-  opacity: 0;
-  transform: translateY(6px);
-  animation: loading-fade 0.8s 0.45s var(--ease-apple) forwards;
-}
-
-.loading-bar {
-  width: 156px;
-  height: 2px;
-  overflow: hidden;
-  background: rgba(20, 20, 20, 0.1);
-  opacity: 0;
-  animation: loading-fade 0.5s 0.5s var(--ease-apple) forwards;
-}
-.loading-bar > span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--botanical);
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  animation: loading-bar-fill 1.35s 0.2s var(--ease-in-out) forwards;
-}
-@keyframes loading-fade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes loading-bar-fill {
-  to {
-    transform: scaleX(1);
-  }
-}
-
 /* Exit: content fades, then the cream panels split open. */
 .loading-screen.is-exiting .loading-content {
   opacity: 0;
@@ -838,80 +762,83 @@ body.no-scroll {
 }
 
 /* ------------------------------------------------------------------ */
-/* Cartoon leaf custom cursor                                          */
+/* Falling leaves                                                      */
 /* ------------------------------------------------------------------ */
-@media (any-pointer: fine) {
-  html.natural-cursor-on,
-  html.natural-cursor-on * {
-    cursor: none !important;
-  }
-  html.natural-cursor-on input,
-  html.natural-cursor-on textarea,
-  html.natural-cursor-on select {
-    cursor: auto !important;
-  }
-}
-
-.natural-cursor {
+.falling-leaves {
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 90;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s var(--ease-apple);
-  will-change: transform;
-}
-.natural-cursor.is-visible {
-  opacity: 1;
-}
-
-.natural-cursor-badge {
-  position: absolute;
   inset: 0;
-  transform-origin: 8% 88%;
-  transition: transform 0.24s var(--ease-apple);
-}
-.natural-cursor.is-down .natural-cursor-badge {
-  transform: scale(0.8) rotate(-5deg);
+  z-index: 12;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-.natural-cursor-leaf {
+.falling-leaf {
+  position: absolute;
+  top: -10vh;
+  left: var(--left);
+  width: var(--size);
+  height: var(--size);
+  opacity: 0;
+  animation:
+    leaf-fall var(--dur) linear var(--delay) infinite,
+    leaf-fade var(--dur) linear var(--delay) infinite;
+  will-change: transform, opacity;
+}
+
+.falling-leaf svg {
+  display: block;
   width: 100%;
   height: 100%;
-  transform-origin: 8% 88%;
-  animation: natural-cursor-leaf-sway 3.6s var(--ease-in-out) infinite;
-  filter: drop-shadow(0 5px 7px rgba(20, 20, 20, 0.22));
+  transform-origin: 50% 45%;
+  animation: leaf-sway var(--sway) ease-in-out var(--delay) infinite
+    alternate;
 }
-@keyframes natural-cursor-leaf-sway {
-  0%,
-  100% {
-    transform: rotate(-4deg);
+
+@keyframes leaf-fall {
+  from {
+    transform: translate3d(0, -10vh, 0);
   }
-  50% {
-    transform: rotate(4deg);
+  to {
+    transform: translate3d(0, 115vh, 0);
   }
 }
 
-.natural-cursor-pulse {
-  position: absolute;
-  left: 5px;
-  top: 56px;
-  width: 18px;
-  height: 18px;
-  margin: -9px 0 0 -9px;
-  border-radius: 9999px;
-  border: 2px solid rgba(22, 105, 56, 0.75);
-  animation: natural-cursor-pulse 0.55s var(--ease-apple) forwards;
-}
-@keyframes natural-cursor-pulse {
+@keyframes leaf-sway {
   from {
-    transform: scale(0.35);
-    opacity: 0.9;
+    transform: translateX(calc(-1 * var(--drift))) rotate(-26deg);
   }
   to {
-    transform: scale(2.2);
+    transform: translateX(var(--drift)) rotate(26deg);
+  }
+}
+
+@keyframes leaf-fade {
+  0% {
     opacity: 0;
+  }
+  8% {
+    opacity: var(--leaf-opacity);
+  }
+  88% {
+    opacity: var(--leaf-opacity);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .falling-leaf--extra {
+    display: none;
+  }
+  .falling-leaf {
+    top: -8vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .falling-leaves {
+    display: none;
   }
 }
 
@@ -951,11 +878,5 @@ body.no-scroll {
   }
   .cart-drawer .cart-item {
     opacity: 1;
-  }
-  .natural-cursor-leaf {
-    animation: none;
-  }
-  .natural-cursor-pulse {
-    display: none;
   }
 }

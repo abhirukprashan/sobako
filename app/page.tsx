@@ -8,9 +8,6 @@ import SplitText from "@/components/SplitText";
 import ParallaxImage from "@/components/ParallaxImage";
 import HeroFan from "@/components/HeroFan";
 
-const u = (id: string) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=80`;
-
 export default function HomePage() {
   const featured = featuredProducts();
   const best = bestsellers();
@@ -41,8 +38,8 @@ export default function HomePage() {
       {/* ---------- SPLIT CATEGORY FEATURE ---------- */}
       <section id="story" className="grid grid-cols-1 lg:grid-cols-2">
         <ParallaxImage
-          src={u("photo-1512621776951-a57141f2eefd")}
-          alt="Fresh herbs and grains for traditional porridge"
+          src="/self.jpg"
+          alt="Sobako rice, pasta and porridge packs lined up on a supermarket shelf"
           className="min-h-[360px] border-b lg:border-r lg:border-b-0 lg:min-h-[560px]"
         />
         <div className="flex flex-col">
@@ -81,8 +78,8 @@ export default function HomePage() {
       </section>
 
       {/* ---------- DELIVERY BANNER ---------- */}
-      <section className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative flex flex-col justify-between border-b lg:border-r lg:border-b-0 px-6 py-10 md:px-10 md:py-14">
+      <section className="grid grid-cols-1 md:grid-cols-2">
+        <div className="relative flex flex-col justify-between border-b md:border-r md:border-b-0 px-6 py-8 md:px-10 md:py-10">
           <Reveal>
             <p className="max-w-sm text-sm leading-relaxed text-ink/70">
               Order today and we&apos;ll pack your goodness fresh and send it
@@ -100,13 +97,13 @@ export default function HomePage() {
             trigger="view"
             lines={["Order today,", "delivered island-wide"]}
             stagger={80}
-            className="mt-16 font-sans text-3xl font-semibold uppercase leading-[1.05] tracking-tight md:text-5xl"
+            className="mt-10 font-sans text-3xl font-semibold uppercase leading-[1.05] tracking-tight md:mt-12 md:text-5xl"
           />
         </div>
         <ParallaxImage
-          src={u("photo-1542838132-92c53300491e")}
-          alt="Fresh natural grocery delivery"
-          className="min-h-[340px] lg:min-h-[520px]"
+          src="/delevary.jpg"
+          alt="Sobako order packed for island-wide delivery"
+          className="min-h-[240px] md:min-h-[340px]"
         />
       </section>
     </div>

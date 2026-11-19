@@ -32,9 +32,12 @@ export default function ParallaxImage({
           obs.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
     obs.observe(frame);
+
+    // Never leave the frame hidden if the observer is slow to fire.
+    const failSafe = window.setTimeout(() => setVisible(true), 900);
 
     let raf = 0;
     const onScroll = () => {
@@ -57,6 +60,7 @@ export default function ParallaxImage({
     window.addEventListener("resize", onScroll);
     return () => {
       obs.disconnect();
+      window.clearTimeout(failSafe);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
@@ -66,7 +70,7 @@ export default function ParallaxImage({
   return (
     <div
       ref={frameRef}
-      className={`parallax-frame overflow-hidden ${visible ? "is-visible" : ""} ${className}`}
+      className={`parallax-frame relative overflow-hidden ${visible ? "is-visible" : ""} ${className}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -74,7 +78,7 @@ export default function ParallaxImage({
         src={src}
         alt={alt}
         loading="lazy"
-        className="parallax-img h-full w-full object-cover"
+        className="parallax-img absolute inset-0 h-full w-full object-cover"
         style={{ transform: "translate3d(0, 0, 0) scale(1.16)" }}
       />
     </div>
