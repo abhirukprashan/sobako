@@ -4,6 +4,7 @@ import { featuredProducts, bestsellers } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
 import Marquee from "@/components/Marquee";
 import Reveal from "@/components/Reveal";
+import SplitText from "@/components/SplitText";
 import ParallaxImage from "@/components/ParallaxImage";
 import HeroShowcase from "@/components/HeroShowcase";
 
@@ -19,7 +20,7 @@ export default function HomePage() {
       {/* ---------- HERO ---------- */}
       <section className="grid grid-cols-1 lg:grid-cols-2">
         <div className="relative flex flex-col justify-between border-b lg:border-r lg:border-b-0 px-6 py-10 md:px-10 md:py-14">
-          <Reveal>
+          <Reveal variant="fade" delay={80}>
             <p className="max-w-sm text-sm leading-relaxed text-ink/70">
               Rediscover the heritage grains of Sri Lanka — traditional rice,
               herbal porridge, and stone-milled flour, grown naturally and
@@ -33,15 +34,13 @@ export default function HomePage() {
             </Link>
           </Reveal>
 
-          <Reveal delay={120}>
-            <h1 className="mt-20 font-sans text-[2.2rem] font-semibold uppercase leading-[1.05] tracking-tight md:text-[3.2rem]">
-              Natural goodness
-              <br />
-              for every
-              <br />
-              Sri Lankan table
-            </h1>
-          </Reveal>
+          <SplitText
+            as="h1"
+            lines={["Natural goodness", "for every", "Sri Lankan table"]}
+            delay={220}
+            stagger={70}
+            className="mt-20 font-sans text-[2.2rem] font-semibold uppercase leading-[1.05] tracking-tight md:text-[3.2rem]"
+          />
         </div>
 
         <HeroShowcase products={featured} />
@@ -122,13 +121,13 @@ export default function HomePage() {
               Shop Now
             </Link>
           </Reveal>
-          <Reveal delay={120}>
-            <h2 className="mt-16 font-sans text-3xl font-semibold uppercase leading-[1.05] tracking-tight md:text-5xl">
-              Order today,
-              <br />
-              delivered island-wide
-            </h2>
-          </Reveal>
+          <SplitText
+            as="h2"
+            trigger="view"
+            lines={["Order today,", "delivered island-wide"]}
+            stagger={80}
+            className="mt-16 font-sans text-3xl font-semibold uppercase leading-[1.05] tracking-tight md:text-5xl"
+          />
         </div>
         <ParallaxImage
           src={u("photo-1542838132-92c53300491e")}

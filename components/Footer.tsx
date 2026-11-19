@@ -36,7 +36,7 @@ export default function Footer() {
                 <li key={l.label}>
                   <Link
                     href={l.href}
-                    className="transition-colors duration-300 hover:text-ink"
+                    className="transition-colors duration-300 hover:text-botanical"
                   >
                     {l.label}
                   </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
                 <li key={l.label}>
                   <Link
                     href={l.href}
-                    className="transition-colors duration-300 hover:text-ink"
+                    className="transition-colors duration-300 hover:text-botanical"
                   >
                     {l.label}
                   </Link>
@@ -87,7 +87,7 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="flex-shrink-0 border border-ink px-5 py-2.5 text-[10px] uppercase tracking-widest transition-colors duration-300 hover:bg-ink hover:text-cream"
+                  className="flex-shrink-0 border border-ink px-5 py-2.5 text-[10px] uppercase tracking-widest transition-colors duration-300 hover:border-botanical hover:bg-botanical hover:text-cream"
                 >
                   Sign Up
                 </button>
@@ -102,21 +102,21 @@ export default function Footer() {
             <a
               href="#"
               aria-label="Facebook"
-              className="transition-colors hover:text-ink"
+              className="transition-colors hover:text-botanical"
             >
               <Facebook size={15} strokeWidth={1.5} />
             </a>
             <a
               href="#"
               aria-label="Instagram"
-              className="transition-colors hover:text-ink"
+              className="transition-colors hover:text-botanical"
             >
               <Instagram size={15} strokeWidth={1.5} />
             </a>
             <a
               href="#"
               aria-label="Twitter"
-              className="transition-colors hover:text-ink"
+              className="transition-colors hover:text-botanical"
             >
               <Twitter size={15} strokeWidth={1.5} />
             </a>

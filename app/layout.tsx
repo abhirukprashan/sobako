@@ -6,6 +6,7 @@ import { StoreProvider } from "@/context/StoreContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import NaturalCursor from "@/components/NaturalCursor";
 
 const serif = Playfair_Display({
   subsets: ["latin"],
@@ -47,6 +48,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <CartDrawer />
+          <NaturalCursor />
         </StoreProvider>
       </body>
     </html>

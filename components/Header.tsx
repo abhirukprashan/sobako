@@ -59,7 +59,7 @@ export default function Header() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   const linkClass = (href: string) =>
-    `label transition-colors duration-300 hover:text-botanical ${
+    `label nav-link link-sweep relative inline-flex pb-1 transition-colors duration-300 hover:text-botanical ${
       isActive(href) ? "text-botanical" : ""
     }`;
 
@@ -90,14 +90,23 @@ export default function Header() {
 
           <div className="hidden items-center gap-6 lg:flex xl:gap-8">
             {LEFT_LINKS.map((l) => (
-              <Link key={l.label} href={l.href} className={linkClass(l.href)}>
+              <Link
+                key={l.label}
+                href={l.href}
+                data-active={isActive(l.href)}
+                className={linkClass(l.href)}
+              >
                 {l.label}
               </Link>
             ))}
 
             {/* B2B dropdown */}
             <div className="group relative flex items-center">
-              <Link href="/b2b" className={linkClass("/b2b")}>
+              <Link
+                href="/b2b"
+                data-active={isActive("/b2b")}
+                className={linkClass("/b2b")}
+              >
                 B2B
               </Link>
               <div className="pointer-events-none absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 ease-apple group-focus-within:pointer-events-auto group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100">
@@ -106,7 +115,7 @@ export default function Header() {
                     <Link
                       key={c.label}
                       href={c.href}
-                      className="block px-3 py-2 text-[12px] text-ink/70 transition-colors duration-200 hover:bg-ink/[0.04] hover:text-ink"
+                      className="block px-3 py-2 text-[12px] text-ink/70 transition-colors duration-200 hover:bg-botanical/[0.07] hover:text-botanical"
                     >
                       {c.label}
                     </Link>
@@ -117,6 +126,7 @@ export default function Header() {
 
             <Link
               href="/blog"
+              data-active={isActive("/blog")}
               className={linkClass("/blog")}
             >
               BLOG
@@ -127,7 +137,7 @@ export default function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex-shrink-0 justify-self-center transition-opacity hover:opacity-70"
+          className="flex-shrink-0 justify-self-center transition-transform duration-500 ease-apple hover:scale-[1.04] hover:opacity-80"
           aria-label="Sobako home"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -142,7 +152,12 @@ export default function Header() {
         <div className="flex items-center justify-end gap-5 xl:gap-7">
           <div className="hidden items-center gap-5 lg:flex xl:gap-7">
             {RIGHT_LINKS.map((l) => (
-              <Link key={l.label} href={l.href} className={linkClass(l.href)}>
+              <Link
+                key={l.label}
+                href={l.href}
+                data-active={isActive(l.href)}
+                className={linkClass(l.href)}
+              >
                 {l.label}
               </Link>
             ))}
@@ -157,6 +172,7 @@ export default function Header() {
             </Link>
             <button
               onClick={openCart}
+              data-cart-target
               className="label inline-flex items-center transition-colors duration-300 hover:text-botanical"
               aria-label={`Open cart, ${cartCount} items`}
             >
@@ -166,6 +182,7 @@ export default function Header() {
 
           <button
             onClick={openCart}
+            data-cart-target
             className="label inline-flex items-center lg:hidden"
             aria-label={`Open cart, ${cartCount} items`}
           >
@@ -176,16 +193,17 @@ export default function Header() {
 
       {/* Mobile panel */}
       <div
-        className={`overflow-hidden border-t border-hair bg-cream transition-[max-height] duration-500 ease-apple lg:hidden ${
-          menuOpen ? "max-h-[560px]" : "max-h-0 border-t-0"
+        className={`mobile-panel overflow-hidden border-t border-hair bg-cream transition-[max-height] duration-500 ease-apple lg:hidden ${
+          menuOpen ? "is-open max-h-[560px]" : "max-h-0 border-t-0"
         }`}
       >
         <div className="px-6 py-4">
-          {ALL_LINKS.map((l) => (
+          {ALL_LINKS.map((l, i) => (
             <Link
               key={l.label}
               href={l.href}
-              className={`block py-3 text-sm transition-colors hover:text-botanical ${
+              style={{ transitionDelay: `${menuOpen ? 80 + i * 45 : 0}ms` }}
+              className={`mobile-link block py-3 text-sm transition-colors hover:text-botanical ${
                 isActive(l.href) ? "text-botanical" : ""
               }`}
             >
@@ -194,7 +212,10 @@ export default function Header() {
           ))}
           <Link
             href="/favorites"
-            className="block py-3 text-sm transition-colors hover:text-botanical"
+            style={{
+              transitionDelay: `${menuOpen ? 80 + ALL_LINKS.length * 45 : 0}ms`,
+            }}
+            className="mobile-link block py-3 text-sm transition-colors hover:text-botanical"
           >
             Favorites ({favCount})
           </Link>
@@ -223,7 +244,8 @@ function CountBadge({
     <span className="relative inline-flex">
       {children}
       <span
-        className="absolute -right-2.5 -top-2 flex h-[15px] min-w-[15px] items-center justify-center rounded-full px-1 text-[9px] font-semibold leading-none tracking-normal"
+        key={count}
+        className="badge-pop absolute -right-2.5 -top-2 flex h-[15px] min-w-[15px] items-center justify-center rounded-full px-1 text-[9px] font-semibold leading-none tracking-normal"
         style={{ background: "var(--botanical)", color: "var(--cream)" }}
       >
         {count}

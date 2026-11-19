@@ -11,42 +11,71 @@ export default function ParallaxImage({
   alt: string;
   className?: string;
 }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [scale, setScale] = useState(1.06);
+  const frameRef = useRef<HTMLDivElement | null>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const frame = frameRef.current;
+    const img = imgRef.current;
+    if (!frame || !img) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(frame);
+
     let raf = 0;
     const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        const rect = el.getBoundingClientRect();
+        const rect = frame.getBoundingClientRect();
         const vh = window.innerHeight;
-        // progress 0 -> 1 as element travels through viewport
+        // 0 -> 1 as the frame travels through the viewport
         const progress = Math.min(
           1,
           Math.max(0, 1 - (rect.top + rect.height / 2) / (vh + rect.height))
         );
-        setScale(1.06 - progress * 0.06);
+        const shift = (0.5 - progress) * 52;
+        img.style.transform = `translate3d(0, ${shift.toFixed(2)}px, 0) scale(1.16)`;
       });
     };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
+      obs.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
     };
   }, []);
 
   return (
-    <div ref={ref} className={`overflow-hidden ${className}`}>
+    <div
+      ref={frameRef}
+      className={`parallax-frame overflow-hidden ${visible ? "is-visible" : ""} ${className}`}
+    >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
+        ref={imgRef}
         src={src}
         alt={alt}
+        loading="lazy"
         className="parallax-img h-full w-full object-cover"
-        style={{ transform: `scale(${scale})` }}
+        style={{ transform: "translate3d(0, 0, 0) scale(1.16)" }}
       />
     </div>
   );

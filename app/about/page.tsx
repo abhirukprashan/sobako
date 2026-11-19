@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import SplitText from "@/components/SplitText";
 import ParallaxImage from "@/components/ParallaxImage";
 
 const u = (id: string) =>
@@ -39,11 +40,13 @@ export default function AboutPage() {
         <div className="flex flex-col justify-between border-b px-6 py-12 md:px-10 md:py-16 lg:border-b-0 lg:border-r">
           <Reveal>
             <span className="label text-botanical">Our Story</span>
-            <h1 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">
-              Rooted in Sri
-              <br />
-              Lankan soil
-            </h1>
+            <SplitText
+              as="h1"
+              lines={["Rooted in Sri", "Lankan soil"]}
+              delay={120}
+              stagger={75}
+              className="mt-6 font-serif text-4xl leading-tight md:text-6xl"
+            />
             <p className="mt-6 max-w-md text-sm leading-relaxed text-ink/70">
               Sobako began with a simple belief — that the grains and herbs our
               grandparents cooked with deserve a place on every modern table.

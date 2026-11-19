@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Package, Ship, BadgeCheck } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import SplitText from "@/components/SplitText";
 import ParallaxImage from "@/components/ParallaxImage";
 
 const u = (id: string) =>
@@ -75,11 +76,13 @@ export default function B2BPage() {
         <div className="flex flex-col justify-between border-b px-6 py-12 md:px-10 md:py-16 lg:border-b-0 lg:border-r">
           <Reveal>
             <span className="label text-botanical">Wholesale & Export</span>
-            <h1 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">
-              Sobako
-              <br />
-              for business
-            </h1>
+            <SplitText
+              as="h1"
+              lines={["Sobako", "for business"]}
+              delay={120}
+              stagger={75}
+              className="mt-6 font-serif text-4xl leading-tight md:text-6xl"
+            />
             <p className="mt-6 max-w-md text-sm leading-relaxed text-ink/70">
               Reliable supply of authentic Sri Lankan rice, spices, coconut
               products and ready-to-eat foods — for retailers, distributors,
@@ -175,7 +178,7 @@ export default function B2BPage() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-flex border border-cream/60 px-7 py-3 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:bg-cream hover:text-ink"
+            className="mt-8 inline-flex border border-cream/60 px-7 py-3 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:border-cream hover:bg-[#0f4d28] hover:text-cream"
           >
             Contact Our Team
           </Link>

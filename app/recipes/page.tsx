@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Clock, Users } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import SplitText from "@/components/SplitText";
 import ParallaxImage from "@/components/ParallaxImage";
 
 const u = (id: string) =>
@@ -72,9 +73,13 @@ export default function RecipesPage() {
       <section className="hair-b px-6 py-12 text-center md:px-10 md:py-20">
         <Reveal>
           <span className="label text-botanical">Recipes</span>
-          <h1 className="mt-5 font-serif text-4xl md:text-6xl">
-            From our kitchen
-          </h1>
+          <SplitText
+            as="h1"
+            lines={["From our kitchen"]}
+            delay={120}
+            stagger={75}
+            className="mt-5 font-serif text-4xl md:text-6xl"
+          />
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-ink/60">
             Simple, generous recipes built on traditional rice, herbal porridge
             and stone-milled flour — the way we cook at home.
@@ -191,7 +196,7 @@ export default function RecipesPage() {
           </p>
           <Link
             href="/shop"
-            className="mt-8 inline-flex border border-cream/60 px-7 py-3 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:bg-cream hover:text-ink"
+            className="mt-8 inline-flex border border-cream/60 px-7 py-3 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:border-cream hover:bg-[#0f4d28] hover:text-cream"
           >
             Stock Your Pantry
           </Link>

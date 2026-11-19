@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import SplitText from "@/components/SplitText";
 
 const u = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1200&q=80`;
@@ -71,9 +72,13 @@ export default function BlogPage() {
       <section className="hair-b px-6 py-12 text-center md:px-10 md:py-20">
         <Reveal>
           <span className="label text-botanical">Our Blog</span>
-          <h1 className="mt-5 font-serif text-4xl md:text-6xl">
-            The Sobako Journal
-          </h1>
+          <SplitText
+            as="h1"
+            lines={["The Sobako Journal"]}
+            delay={120}
+            stagger={75}
+            className="mt-5 font-serif text-4xl md:text-6xl"
+          />
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-ink/60">
             Stories from the paddy, notes from the kitchen, and a little pantry
             wisdom — written for people who care where their food comes from.
@@ -183,7 +188,7 @@ function NewsletterBand() {
         </p>
         <Link
           href="/contact"
-          className="mt-8 inline-flex border border-cream/60 px-7 py-3 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:bg-cream hover:text-ink"
+          className="mt-8 inline-flex border border-cream/60 px-7 py-3 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:border-cream hover:bg-[#0f4d28] hover:text-cream"
         >
           Get In Touch
         </Link>

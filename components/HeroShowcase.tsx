@@ -9,13 +9,17 @@ import { formatLKR, CATEGORY_LABELS } from "@/lib/products";
 export default function HeroShowcase({ products }: { products: Product[] }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [tick, setTick] = useState(0);
   const product = products[active];
 
-  const prev = () =>
-    setActive((i) => (i - 1 + products.length) % products.length);
-  const next = () => setActive((i) => (i + 1) % products.length);
+  const go = (next: number) => {
+    setActive((next + products.length) % products.length);
+    setTick((t) => t + 1);
+  };
+  const prev = () => go(active - 1);
+  const next = () => go(active + 1);
 
-  // Auto-advance the showcase
+  // Auto-advance the showcase; restart the timer after manual navigation.
   useEffect(() => {
     if (paused) return;
     const id = setInterval(
@@ -23,13 +27,19 @@ export default function HeroShowcase({ products }: { products: Product[] }) {
       4500
     );
     return () => clearInterval(id);
-  }, [paused, products.length]);
+  }, [paused, products.length, tick]);
 
   return (
     <div
       className="relative min-h-[420px] overflow-hidden bg-[#eee9df] lg:min-h-[640px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+          setPaused(false);
+        }
+      }}
     >
       {/* Product images */}
       {products.map((p, i) => (
@@ -38,28 +48,39 @@ export default function HeroShowcase({ products }: { products: Product[] }) {
           key={p.slug}
           src={p.images[0]}
           alt={p.name}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-apple ${
-            i === active ? "opacity-100" : "opacity-0"
+          className={`hero-img absolute inset-0 h-full w-full object-cover ${
+            i === active ? "is-active" : ""
           }`}
         />
       ))}
 
       {/* Black gradient for legibility */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
+      <div className="hero-vignette pointer-events-none absolute inset-0" />
+
+      {/* Index counter */}
+      <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-3 md:left-8 md:top-8">
+        <span className="label text-cream/80">
+          {String(active + 1).padStart(2, "0")}
+        </span>
+        <span className="h-px w-8 bg-cream/40" />
+        <span className="label text-cream/40">
+          {String(products.length).padStart(2, "0")}
+        </span>
+      </div>
 
       {/* Navigation arrows */}
-      <div className="absolute right-4 top-4 flex items-center gap-2">
+      <div className="absolute right-4 top-4 flex items-center gap-2 md:right-8 md:top-8">
         <button
           onClick={prev}
           aria-label="Previous product"
-          className="flex h-10 w-10 items-center justify-center border border-white/50 text-cream backdrop-blur-sm transition-colors duration-300 hover:bg-cream hover:text-ink"
+          className="hero-arrow flex h-10 w-10 items-center justify-center border border-white/50 text-cream backdrop-blur-sm transition-colors duration-300 hover:border-botanical hover:bg-botanical hover:text-cream"
         >
           <ChevronLeft size={18} strokeWidth={1.5} />
         </button>
         <button
           onClick={next}
           aria-label="Next product"
-          className="flex h-10 w-10 items-center justify-center border border-white/50 text-cream backdrop-blur-sm transition-colors duration-300 hover:bg-cream hover:text-ink"
+          className="hero-arrow flex h-10 w-10 items-center justify-center border border-white/50 text-cream backdrop-blur-sm transition-colors duration-300 hover:border-botanical hover:bg-botanical hover:text-cream"
         >
           <ChevronRight size={18} strokeWidth={1.5} />
         </button>
@@ -67,7 +88,11 @@ export default function HeroShowcase({ products }: { products: Product[] }) {
 
       {/* Product info */}
       <div className="absolute inset-x-4 bottom-4 md:inset-x-8 md:bottom-8">
-        <div className="max-w-md">
+        <div
+          key={product.slug}
+          className="hero-copy max-w-md"
+          aria-live="polite"
+        >
           <span className="label text-cream/70">
             {CATEGORY_LABELS[product.category]}
           </span>
@@ -79,25 +104,30 @@ export default function HeroShowcase({ products }: { products: Product[] }) {
           </span>
           <Link
             href={`/products/${product.slug}`}
-            className="label mt-5 inline-flex items-center gap-2 border border-cream/70 px-5 py-3 text-cream transition-colors duration-300 hover:bg-cream hover:text-ink"
+            className="label group/cta mt-5 inline-flex items-center gap-2 border border-cream/70 px-5 py-3 text-cream transition-colors duration-300 hover:border-botanical hover:bg-botanical hover:text-cream"
           >
-            Shop <ArrowRight size={12} strokeWidth={1.5} />
+            Shop
+            <ArrowRight
+              size={12}
+              strokeWidth={1.5}
+              className="transition-transform duration-500 ease-apple group-hover/cta:translate-x-1"
+            />
           </Link>
         </div>
 
-        {/* Dots */}
+        {/* Progress dots */}
         <div className="mt-6 flex max-w-md items-center gap-2">
           {products.map((p, i) => (
             <button
               key={p.slug}
-              onClick={() => setActive(i)}
+              onClick={() => go(i)}
               aria-label={`Show ${p.name}`}
-              className="h-[3px] flex-1 transition-colors duration-500"
-              style={{
-                background:
-                  i === active ? "var(--cream)" : "rgba(254,251,244,0.35)",
-              }}
-            />
+              className={`hero-progress flex-1 ${
+                i === active ? "is-active" : ""
+              } ${paused && i === active ? "is-paused" : ""}`}
+            >
+              <span key={`${tick}-${i}-${active}`} />
+            </button>
           ))}
         </div>
       </div>

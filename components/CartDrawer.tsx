@@ -41,8 +41,8 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <aside
-        className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-[440px] flex-col bg-white transition-transform duration-500 ease-apple ${
-          cartOpen ? "translate-x-0" : "translate-x-full"
+        className={`cart-drawer fixed right-0 top-0 z-50 flex h-full w-full max-w-[440px] flex-col bg-white transition-transform duration-500 ease-apple ${
+          cartOpen ? "is-open translate-x-0" : "translate-x-full"
         }`}
         style={{ borderLeft: "1px solid var(--hair)" }}
       >
@@ -54,7 +54,7 @@ export default function CartDrawer() {
         </div>
 
         {checkedOut ? (
-          <div className="flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center">
+          <div className="success-pop flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center">
             <div
               className="flex h-16 w-16 items-center justify-center rounded-full"
               style={{ background: "var(--botanical)" }}
@@ -101,7 +101,9 @@ export default function CartDrawer() {
               </p>
               <div className="h-[3px] w-full overflow-hidden rounded-full bg-ink/10">
                 <div
-                  className="h-full rounded-full transition-all duration-700 ease-apple"
+                  className={`h-full rounded-full transition-all duration-700 ease-apple ${
+                    progress >= 100 ? "free-ship-pulse" : ""
+                  }`}
                   style={{ width: `${progress}%`, background: "var(--botanical)" }}
                 />
               </div>
@@ -109,10 +111,11 @@ export default function CartDrawer() {
 
             {/* Items */}
             <div className="flex-1 overflow-y-auto">
-              {cart.map((item) => (
+              {cart.map((item, i) => (
                 <div
                   key={`${item.slug}-${item.weight}`}
-                  className="flex gap-4 hair-b px-6 py-5"
+                  className="cart-item flex gap-4 hair-b px-6 py-5"
+                  style={{ animationDelay: `${i * 60}ms` }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -125,7 +128,7 @@ export default function CartDrawer() {
                       <span className="label leading-snug">{item.name}</span>
                       <button
                         onClick={() => removeFromCart(item.slug, item.weight)}
-                        className="text-ink/40 transition-colors hover:text-ink"
+                        className="text-ink/40 transition-colors hover:text-botanical"
                         aria-label="Remove item"
                       >
                         <X size={15} strokeWidth={1.5} />
@@ -141,6 +144,7 @@ export default function CartDrawer() {
                             updateQty(item.slug, item.weight, item.qty - 1)
                           }
                           aria-label="Decrease"
+                          className="transition-colors hover:text-botanical"
                         >
                           <Minus size={13} strokeWidth={1.5} />
                         </button>
@@ -152,6 +156,7 @@ export default function CartDrawer() {
                             updateQty(item.slug, item.weight, item.qty + 1)
                           }
                           aria-label="Increase"
+                          className="transition-colors hover:text-botanical"
                         >
                           <Plus size={13} strokeWidth={1.5} />
                         </button>

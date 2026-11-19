@@ -7,6 +7,7 @@ import type { Category } from "@/lib/products";
 import { useStore } from "@/context/StoreContext";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
+import SplitText from "@/components/SplitText";
 
 const TABS = ["ALL", "RICE", "PORRIDGE", "HERBAL", "PASTA", "FLOUR"];
 
@@ -35,8 +36,14 @@ function ShopInner() {
   return (
     <div>
       <div className="hair-b px-6 py-12 text-center md:px-10 md:py-16">
-        <Reveal>
-          <h1 className="font-serif text-4xl md:text-5xl">Shop Sobako</h1>
+        <Reveal variant="fade">
+          <SplitText
+            as="h1"
+            lines={["Shop Sobako"]}
+            delay={100}
+            stagger={75}
+            className="font-serif text-4xl md:text-5xl"
+          />
           <p className="mx-auto mt-3 max-w-md text-sm text-ink/60">
             Traditional rice, herbal porridge, stone-milled flour and wholesome
             pasta — natural goodness for every Sri Lankan table.
@@ -50,7 +57,7 @@ function ShopInner() {
           <button
             key={t}
             onClick={() => setCategory(t)}
-            className="label px-5 py-2 transition-all duration-500 ease-apple"
+            className="shop-tab label px-5 py-2"
             style={{
               background: category === t ? "var(--botanical)" : "transparent",
               color: category === t ? "var(--cream)" : "var(--ink)",

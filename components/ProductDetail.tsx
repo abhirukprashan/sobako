@@ -55,16 +55,16 @@ export default function ProductDetail({
       {/* ---------- TOP: GALLERY + INFO ---------- */}
       <section className="mx-auto grid max-w-[1200px] grid-cols-1 gap-10 px-6 py-10 md:px-10 md:py-16 lg:grid-cols-2 lg:items-start lg:gap-16">
         {/* Gallery */}
-        <div className="lg:self-start">
-          <div className="relative h-[420px] overflow-hidden bg-[#eee9df] shadow-[-10px_10px_28px_-14px_rgba(20,20,20,0.45)] sm:h-[560px] lg:h-[640px]">
+        <Reveal variant="mask" className="lg:self-start">
+          <div className="detail-media relative h-[420px] overflow-hidden bg-[#eee9df] shadow-[-10px_10px_28px_-14px_rgba(20,20,20,0.45)] sm:h-[560px] lg:h-[640px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={product.images[0]}
               alt={product.name}
-              className="h-full w-full object-cover"
+              className="detail-img h-full w-full object-cover"
             />
           </div>
-        </div>
+        </Reveal>
 
         {/* Info */}
         <Reveal className="flex flex-col">
@@ -132,7 +132,7 @@ export default function ProductDetail({
 
             <button
               onClick={handleAddToBag}
-              className="flex flex-1 items-center justify-center gap-2 border border-ink py-4 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:bg-ink hover:text-cream"
+              className="flex flex-1 items-center justify-center gap-2 border border-ink py-4 text-[11px] uppercase tracking-widest transition-colors duration-300 hover:border-botanical hover:bg-botanical hover:text-cream"
             >
               {added ? (
                 <>

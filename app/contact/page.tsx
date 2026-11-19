@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, Mail, MapPin, Phone, Clock } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import SplitText from "@/components/SplitText";
 
 const DETAILS = [
   {
@@ -42,9 +43,13 @@ export default function ContactPage() {
       <section className="hair-b px-6 py-12 text-center md:px-10 md:py-20">
         <Reveal>
           <span className="label text-botanical">Contact</span>
-          <h1 className="mt-5 font-serif text-4xl md:text-6xl">
-            Say hello
-          </h1>
+          <SplitText
+            as="h1"
+            lines={["Say hello"]}
+            delay={120}
+            stagger={75}
+            className="mt-5 font-serif text-4xl md:text-6xl"
+          />
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-ink/60">
             Questions about an order, wholesale enquiries or just a recipe to
             share — we would love to hear from you.

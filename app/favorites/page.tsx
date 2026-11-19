@@ -5,6 +5,7 @@ import { products } from "@/lib/products";
 import { useStore } from "@/context/StoreContext";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
+import SplitText from "@/components/SplitText";
 
 export default function FavoritesPage() {
   const { favorites } = useStore();
@@ -14,7 +15,13 @@ export default function FavoritesPage() {
     <div>
       <div className="hair-b px-6 py-12 text-center md:px-10 md:py-16">
         <Reveal>
-          <h1 className="font-serif text-4xl md:text-5xl">Favorites</h1>
+          <SplitText
+            as="h1"
+            lines={["Favorites"]}
+            delay={100}
+            stagger={75}
+            className="font-serif text-4xl md:text-5xl"
+          />
           <p className="mx-auto mt-3 max-w-md text-sm text-ink/60">
             The pieces of your pantry you&apos;ve saved for later.
           </p>
