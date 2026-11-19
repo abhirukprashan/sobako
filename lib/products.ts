@@ -307,6 +307,11 @@ export const products: Product[] = [
   },
 ];
 
+/** Background-removed pack shot (public/products-cutout/<slug>.webp). */
+export function cutoutImage(p: Product) {
+  return `/products-cutout/${p.slug}.webp`;
+}
+
 export function getProduct(slug: string) {
   return products.find((p) => p.slug === slug);
 }

@@ -10,7 +10,7 @@ import {
 import type { Product } from "@/lib/products";
 import { formatLKR, CATEGORY_LABELS } from "@/lib/products";
 import { useStore } from "@/context/StoreContext";
-import ProductCard from "@/components/ProductCard";
+import RelatedSlider from "@/components/RelatedSlider";
 import Accordion from "@/components/Accordion";
 import Reveal from "@/components/Reveal";
 
@@ -179,25 +179,8 @@ export default function ProductDetail({
       </section>
 
       {/* ---------- YOU MIGHT ALSO LIKE ---------- */}
-      <section className="hair-t">
-        <Reveal className="px-6 pb-2 pt-10 md:px-10">
-          <h2 className="font-sans text-2xl font-semibold uppercase tracking-tight">
-            You Might Also Like
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 border-t border-hair sm:grid-cols-3">
-          {related.map((p, i) => (
-            <div
-              key={p.slug}
-              className={`border-b sm:border-b-0 ${
-                i < related.length - 1 ? "sm:border-r" : ""
-              }`}
-            >
-              <ProductCard product={p} />
-            </div>
-          ))}
-        </div>
-      </section>
+      <RelatedSlider products={related} />
+
     </div>
   );
 }

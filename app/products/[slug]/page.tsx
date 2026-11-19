@@ -16,6 +16,6 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const product = getProduct(params.slug);
   if (!product) notFound();
-  const related = relatedProducts(params.slug, 3);
+  const related = relatedProducts(params.slug, 8);
   return <ProductDetail product={product} related={related} />;
 }

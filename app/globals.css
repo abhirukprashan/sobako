@@ -560,6 +560,8 @@ body.no-scroll {
   --w: clamp(108px, 16vw, 240px);
   --r: clamp(420px, 52vw, 760px);
   --c: clamp(240px, 40vw, 580px);
+  /* Raises the ring so the dishes sit higher in the hero. */
+  --lift: clamp(22px, 3vw, 44px);
 }
 .hero-fan-stage::before {
   content: "";
@@ -582,7 +584,7 @@ body.no-scroll {
 .hero-fan-wheel {
   position: absolute;
   left: 50%;
-  top: calc(100% + var(--c));
+  top: calc(100% + var(--c) - var(--lift, 0px));
   width: 0;
   height: 0;
   animation: hero-fan-orbit 110s linear infinite;
@@ -653,6 +655,7 @@ body.no-scroll {
     --w: clamp(92px, 24vw, 160px);
     --r: clamp(250px, 66vw, 500px);
     --c: clamp(170px, 52vw, 380px);
+    --lift: clamp(10px, 3vw, 22px);
   }
 }
 
@@ -1053,4 +1056,109 @@ body.no-scroll {
 .pill {
   font-family: var(--font-mono), ui-monospace, monospace;
   letter-spacing: 0.08em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Related products slider (PDP)                                       */
+/* ------------------------------------------------------------------ */
+.rs-arrow {
+  display: flex;
+  height: 34px;
+  width: 58px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  transition: background 0.35s var(--ease-apple), color 0.35s var(--ease-apple),
+    opacity 0.35s var(--ease-apple);
+}
+.rs-arrow:hover:not(:disabled) {
+  color: var(--cream);
+  background-size: 100% 100%;
+  border-color: var(--botanical);
+}
+.rs-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.rs-track {
+  display: grid;
+  grid-auto-flow: column;
+  /* ~4.3 cards on desktop, ~2.2 on phones: the peek hints there's more. */
+  grid-auto-columns: calc((100% - 0px) / 4.3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+  border-left: 1px solid var(--hair);
+}
+.rs-track::-webkit-scrollbar {
+  display: none;
+}
+@media (max-width: 1023px) {
+  .rs-track {
+    grid-auto-columns: calc(100% / 3.2);
+  }
+}
+@media (max-width: 639px) {
+  .rs-track {
+    grid-auto-columns: calc(100% / 2.2);
+  }
+}
+.rs-card {
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  border-right: 1px solid var(--hair);
+  padding: 22px 14px 14px;
+}
+.rs-media {
+  display: flex;
+  height: 150px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.rs-media img {
+  max-height: 100%;
+  max-width: 78%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 12px rgba(20, 20, 20, 0.12));
+  transition: transform 0.6s var(--ease-apple);
+}
+.rs-card:hover .rs-media img {
+  transform: translateY(-4px) scale(1.04);
+}
+.rs-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+  width: 100%;
+  border: 1px solid var(--ink);
+  padding: 9px 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: background 0.35s var(--ease-apple), color 0.35s var(--ease-apple);
+}
+.rs-add:hover {
+  color: var(--cream);
+  background-size: 100% 100%;
+  border-color: var(--botanical);
+}
+
+/* Same bottom-up green fill as .pill, so every button hovers alike. */
+.rs-arrow,
+.rs-add {
+  background-image: linear-gradient(var(--botanical), var(--botanical));
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: 100% 0%;
+  transition: color 0.55s var(--ease-apple), background-size 0.6s var(--ease-apple),
+    border-color 0.55s var(--ease-apple), opacity 0.35s var(--ease-apple);
 }
